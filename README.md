@@ -22,12 +22,18 @@ IdentityMind ofrece una Plataforma SaaS (software as a service), para la gestió
 
 - Parametros requridos para validar la **Versión digital identificación oficial vigente**
    - **`scanData <Sting>  (requerido)`**: Imagen de la parte frontal de la identificación,  codificada en Base64 y con un tamaño máximo de 5MB
+   
    - **`doctype <string>  (requerido)`**: Tipo del documento. Pasaporte(PP) | Licencia de conducir(DL)  | Tarjeta de identidad emitida por el gobierno(ID) | Permiso de residencia(RP) | Factura de servicios públicos(UB)
+   
    - **`docCountry <sring>  (requerido)`**: Pais en el que se emitio el documento
+   
    - **`backsideImageData <string> (opcional)`**: Imagen de la parte de atrás del documento, codificada en Base64 y con un tamano máximo de 5MB
+   
    - **`bfn <string> (opcional)`**: Primer nombre de facturación
+   
    - **`bln <string> (opcional)`**: Apellido de facturación
-   - dob <string> (opcional)**:  de nacimiento codificada como unix timestamp o un string en formato ISO8601
+   
+   - **`dob <string> (opcional)`**: fecha de nacimiento codificada como unix timestamp o un string en formato ISO8601
  
    Utiliza como proveedor de identificación de documentos a **Acuant** o **Mitek**
 
