@@ -50,12 +50,20 @@ A continuación se muestra una interacción típica de comerciante / IdentityMin
    
 - Verificacion de **Blacklist**:
    
-   - **`bfn <string> (requerido): Primer nombre de facturación`**
+   - **`bfn <string> (requerido)`**: Primer nombre de facturación`
    
-   - **`bln <string> (requerido): Apellido de facturación`**
+   - **`bln <string> (requerido)`**: Apellido de facturación`
    
    Este proceso se realiza mediante el servicio de sanction screening
+   
+- Verificacion de **Cuenta Bancaria**:
 
+   - **`patch <string> (requerido)`**: Identificador unico de cuenta(hash)
+   
+   - **`ptoken <string> (requerido)`**: Una versión enmascarada o tokenizada del token de la cuenta.
+   
+   El proceso para obtener estos parametros se especifican mas adelante en este documento
+   
 - Validacion de **Clave Unica de Registro de Poblacion y clave de elector**
    
    - **`bfn <string> (requerido)`**: Primer nombre de facturación`
@@ -127,4 +135,63 @@ En caso de que no sea permitido la incorporación de usuarios de algunos países
 ##  Cosas que no puede validar IDM   
    Con respecto a la validación de la credencial para votar, la documentación de IDM no epecifica si el proceso de verificación del código impreso en la credencial para votar y el Numero y año de emision es posible mediante el uso de servicio de Circulo de crédito o con algun otro proveedor, por lo tanto es necesario realizar pruebas en este sentido o buscar alguna otra solución.   
    
+## Obtener Hash y version tokenizada de la cuenta bancaria para su posterior validacion
+
+La API de IdentityMind no acepta identificadores textuales de cuentas bancarias sin cifrar. Acepta la siguiente información sobre la cuenta bancaria a utilizar:
+
+- Hash de cuenta bancaria
+- Token de cuenta bancaria
+
+Para generar el hash de cuenta bancaria, se debe utilizar la **`SALT`**proporcionada por IdentityMind, para generar un hash **`SHA-1`** para el numero de cuenta bancaria y convertir el arreglo de bytes del hash en una cadena hexadecimal. El hash debe incluirse en la cadena JSON de la solicitud.
+
+Para este proceso se puede seguir el siguiente algoritmo:
+~~~
+import hashlib
+import re
+
+SALT = '\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+
+def normalize_payment_identifier(identifier):
+   return re.sub(r'[^a-zA-Z0-9]', '', identifier)
+
+def generate_payment_hash(identifier):
+   m = hashlib.sha1(SALT)
+   m.update(normalize_payment_identifier(identifier))
+   return m.hexdigest()
+    
+def generate_bank_account_hash(routing_num, account_num):
+   """
+   Generate a hash of the provided routing and account number using a well
+   defined salt.  The value of the salt and a complete description of the
+   hashing algorithm is available from IdentityMind support.
+   """
+   return generate_payment_hash(routing_num + account_num)
+
+def generate_bank_account_token(routing_num, account_num):
+   normalized = normalize_payment_identifier(routing_num + account_num)
+   return normalized[0:6] + 'XXXXXXXX' + normalized[-4:]    
+~~~
+
+### Hash de cuenta bancaria
+
+- Para un número de cuenta bancaria de EE. UU., concatene el **`SALT`**, el número de ruta y el número de cuenta y se pasa como argumento a la función para obtener el hash del número de cuenta.
+- Para un número de cuenta IBAN internacional, concatene el **`SALT`** y el número de cuenta IBAN completo y pasa como argunmento a la función para obtener el hash del número de cuenta.
+
+>**Normalizacion**
+>
+> Todos los espacios y guiones deben ser removidos del numero de cuenta antes de realizar el hash
+
+> **Valor de muestra**
+>
+>  Por ejemplo, el hash del número de cuenta bancaria para 321076479 74600015199010 previamente concatenado con el **`SALT`** es 3f57733f34b677294fed96efd440b8d9e7728fa5 y el hash para SN12K00100152000025690007542 previamente concatenado con el **`SALT`** es dd91898995dfef188eca122c5e0dd4550f3a. Se puede incluir esto en las pruebas unitarias para verificar que la implementación de hash sea correcta.
+
+### Token de cuenta bancaria
+
+Para el token de numero de cuenta bancaria IBM recomienda:
+
+   - Para un número de cuenta bancaria de EE. UU., Los primeros 6 dígitos del número de ruta, seguidos de XXXXXXXX y los últimos 4 dígitos del número de cuenta
+   - Para un número de cuenta IBAN internacional, los primeros 6 dígitos de la cuenta, seguidos de XXXXXXXX y los últimos 4 dígitos del número de cuenta
    
+>**Token**
+>
+>El número enmascarado/tokenizado solo se usa con la interfaz de usuario como etiqueta para esta cuenta bancaria, y puede estar en cualquier formato que se ajuste a las limitaciones de seguridad de la información.
