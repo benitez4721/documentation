@@ -1,6 +1,12 @@
 
 # IdentityMind
-IdentityMind ofrece una Plataforma SaaS (software as a service), para la gestión de riesgo en linea y automatización de verificación de cumplimientos legales. Ayuda a empresas a reducir el fraude en la incoporacion de clientes y transacciones, y mejora la utilización de AML (Anti-money laudering), KYC (know your custumer) y listas de sancionados. Esta plataforma construye valida y evalua continuamente las identidades digitales atraves de la tecnología eDNA ™ para garantizar la seguridad comercial global, y cumplimentos legislativos del cliente desde su incoporacion y durante todo el ciclo de vida en la plataforma. Realizan un seguimiento seguro de las entidades involucradas en cada transacción( por ejemplo, consumidores, comerciantes, titulares de tarjetas, billeteras de pago, métodos alternativos de pago), para construir una reputación de pago y permitir que las empresas pueden reducir el potencial  fraude y blanqueo de capitales
+IdentityMind ofrece una Plataforma SaaS (software as a service), para la gestión de riesgo en linea y automatización de verificación de cumplimientos legales. Ayuda a empresas a reducir el fraude en la incoporacion de clientes y transacciones, y mejora la utilización de AML (Anti-money laudering), KYC (know your custumer) y listas de sancionados. Esta plataforma construye valida y evalua continuamente las identidades digitales atraves de la tecnología eDNA ™ para garantizar la seguridad comercial global, y cumplimentos legislativos del cliente desde su incoporacion y durante todo el ciclo de vida en la plataforma. Realizan un seguimiento seguro de las entidades involucradas en cada transacción( por ejemplo, consumidores, comerciantes, titulares de tarjetas, billeteras de pago, métodos alternativos de pago), para construir una reputación de pago y permitir que las empresas pueden reducir el potencial  fraude y blanqueo de capitales.
+
+Recibe información transaccional (pagos, transferencias, KYC, KYB) que comparan con su base de datos de identidad y la evalua con la política de riesgo y cumplimiento que el cliente ha creado.
+
+A continuación se muestra una interacción típica de comerciante / IdentityMind para validar una transacción:
+
+![](https://files.readme.io/bd2d2c0-v9qj1DP.png)
 
 ## EndPoints para validar datos del cliente
 ### Solicitud KYC del cliente
