@@ -195,3 +195,28 @@ Para el token de numero de cuenta bancaria IBM recomienda:
 >**Token**
 >
 >El número enmascarado/tokenizado solo se usa con la interfaz de usuario como etiqueta para esta cuenta bancaria, y puede estar en cualquier formato que se ajuste a las limitaciones de seguridad de la información.
+
+## Informacion de interes
+
+### Acuant GO
+
+Con Acuant Go podemos considerar una posible solucion para la integracion de la verificacion KYC a nuestro sitio web. El plugin de Acuant GO es un formulario de solicitud en línea para la integracion de clientes y para realizar la verificacion debida de KYC.
+
+El plugin está integrado con Acuant Compliance Platform, que tiene un ecosistema de más de 25 proveedores para validar la información del usuario. El complemento también está conectado a Acuant Digital Identity Network, que es una fuente poderosa para verificar si un usuario ha sido visto en la red y usar su reputación de eDNA para la evaluación de riesgos de identidad.
+
+### User flow example
+   1- **Recolectar informacion**: El cliente proporciona la informacion necesaria para la verificacion KYC 
+   <img src="https://downloads.intercomcdn.com/i/o/89065201/ec3f6e36eb0d57c4e650bafb/Screen+Shot+2018-12-04+at+11.12.47+AM.png" width="700" height="500" />
+   
+   2- Cada sección validará el formato de la información y el usuario podrá avanzar una vez que la información sea válida.
+   <img src="https://downloads.intercomcdn.com/i/o/89065279/c0dd54d2bb096e382de73d2d/Screen+Shot+2018-12-04+at+11.12.59+AM.png" width="700" height="500" />
+   
+   3- Si se desea, se mostrará una sección de Verificación de ID, donde los usuarios deberán seleccionar el tipo de documento junto con el país emisor del documento:
+   
+   <img src="https://downloads.intercomcdn.com/i/o/89065472/f6d71685e508283da5a625e7/Screen+Shot+2018-12-04+at+11.17.24+AM.png" width="700" height="500" />
+   
+   4- Después de seleccionar el tipo de documento, el usuario podrá cargarlo a través del escritorio como un archivo o mediante el teléfono celular usando la cámara del               teléfono.
+   <img src="https://downloads.intercomcdn.com/i/o/89065529/82396ae31888ad5139c1869d/Screen+Shot+2018-12-04+at+11.17.37+AM.png" width="700" height="500" />
+   <img src="https://downloads.intercomcdn.com/i/o/89087123/277389ef8c41f8b5860dc040/Screen+Shot+2018-12-04+at+11.26.19+AM.png" width="700" height="500" />
+
+Una vez que el usuario ha ingresado toda la información, se podria decidir mostrar un mensaje o redirigir a una nueva página según el resultado de KYC.
