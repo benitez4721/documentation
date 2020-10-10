@@ -1,5 +1,5 @@
 # IdentityMind
-IdentityMind ofrece una Plataforma SaaS (software as a service), para la gestión de riesgo en línea y automatización de verificación de cumplimientos legales. Ayuda a empresas a reducir el fraude en la incorporación de clientes y transacciones, y mejora la utilización de AML (Anti-money laudering), KYC (know your custumer) y listas de sancionados. Esta plataforma construye valida y evalúa continuamente las identidades digitales a través de la tecnología eDNA ™ para garantizar la seguridad comercial global, y cumplimientos legislativos del cliente desde su incorporación y durante todo el ciclo de vida en la plataforma. Realizan un seguimiento seguro de las entidades involucradas en cada transacción (por ejemplo, consumidores, comerciantes, titulares de tarjetas, billeteras de pago, métodos alternativos de pago), para construir una reputación de pago y permitir que las empresas pueden reducir el potencial fraude y blanqueo de capitales.
+IdentityMind ofrece una Plataforma SaaS (software as a service), para la gestión de riesgo en línea y automatización de verificación de cumplimientos legales. Ayuda a empresas a reducir el fraude en la incorporación de clientes y transacciones, y mejora la utilización de AML (Anti-money laudering), KYC (know your custumer) y listas de sancionados. Esta plataforma construye, valida y evalúa continuamente las identidades digitales a través de la tecnología eDNA ™ para garantizar la seguridad comercial global, y cumplimientos legislativos del cliente desde su incorporación y durante todo el ciclo de vida en la plataforma. Realizan un seguimiento seguro de las entidades involucradas en cada transacción (por ejemplo, consumidores, comerciantes, titulares de tarjetas, billeteras de pago, métodos alternativos de pago), para construir una reputación de pago y permitir que las empresas pueden reducir el potencial fraude y blanqueo de capitales.
 
 Recibe información transaccional (pagos, transferencias, KYC, KYB) que comparan con su base de datos de identidad y la evalúa con la política de riesgo y cumplimiento que el cliente ha creado.
 
@@ -75,7 +75,7 @@ A continuación, se muestra una interacción típica de comerciante / IdentityMi
    
    - **`bsn <string> (requerido)`** : Dirección de residencia. Incluye numero de edificio, nombre de calle y numero de apartamento
    
-   Para este proceso IDM utiliza el proveedor de Circulo de crédito, que es un servicio de verificación de identidad que permite realizar validaciones contra instituciones mexicanas
+   Para este proceso IDM utiliza el proveedor de Circulo de crédito, que es un servicio de verificación de identidad que permite realizar validaciones contra instituciones gubernamentales mexicanas
 
 ### Agregar un documento a una solicitud KYC
 
@@ -129,10 +129,7 @@ En caso de que no sea permitido la incorporación de usuarios de algunos países
    
    - `Security Test DV:1`: Documento Procesado
    
-   Si los tests de seguridad `DV3` y `DV21` fallan, no se puede declarar el documento como autentico o falsificación, para esta situación se tienen dos opciones; o la imagen se analiza manualmente o se le pide al usuario volver a suministrar la imagen.
-   
-##  Cosas que no puede validar IDM   
-   Con respecto a la validación de la credencial para votar, la documentación de IDM no especifica si el proceso de verificación del código impreso en la credencial para votar y el Numero y año de emisión es posible mediante el uso de servicio de Circulo de crédito o con algún otro proveedor, por lo tanto es necesario realizar pruebas en este sentido o buscar alguna otra solución.   
+   Si los tests de seguridad `DV3` y `DV21` fallan, no se puede declarar el documento como autentico o falsificación, para esta situación se tienen dos opciones; o la imagen se analiza manualmente o se le pide al usuario volver a suministrar la imagen. 
    
 ## Obtener Hash y version tokenizada de la cuenta bancaria para su posterior validación
 
@@ -232,3 +229,9 @@ El proceso general consta de dos partes:
    2. Se realiza una verificación facial mediante una selfie para determinar si el rostro de la persona coincide con la foto en el documento, y en paralelo a esto se ejecuta una prueba de vida para verificar que la persona no este tratando de burlar el sistema colocando una foto impresa, o un video sintético.
    
    Al finalizar este proceso se devuelve un puntaje del 0 al 100, que indica el porcentaje de similitud del rostro de la persona con la foto en el documento, y toda la información biométrica recabada es borrada de los servidores de acuant.
+   
+##  Por revisar    
+   - Con respecto a la validación de la credencial para votar, la documentación de IDM no especifica si el proceso de verificación del código impreso en la credencial para votar y el Numero y año de emisión es posible mediante el uso de servicio de Circulo de crédito o con algún otro proveedor, por lo tanto es necesario realizar pruebas en este sentido o buscar alguna otra solución.
+   
+   - Ejecutar pruebas en el ambiente de stage, para ver como se definen los perfiles, reglas y pruebas de seguridad en el proceso de validacion de la informacion.
+   
